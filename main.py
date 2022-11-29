@@ -18,6 +18,7 @@ from torch.distributions import Bernoulli
 from utils import Logger, read_json, write_json, save_checkpoint
 from models import *
 from rewards import compute_reward
+from rewards_new import compute_new_reward
 import vsum_tools
 
 parser = argparse.ArgumentParser("Pytorch code for unsupervised video summarization with REINFORCE")
