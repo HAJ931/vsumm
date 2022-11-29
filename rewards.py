@@ -51,6 +51,6 @@ def compute_reward(seq, actions, ignore_far_sim=True, temp_dist_thre=20, use_gpu
     reward_rep = torch.exp(-dist_mat.mean())
 
     # combine the two rewards
-    reward = (reward_div + reward_rep)
+    reward = (reward_div + reward_rep) * 0.5
 
     return reward
