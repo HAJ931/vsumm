@@ -50,7 +50,12 @@ def compute_new_reward(seq, actions, ignore_far_sim=True, temp_dist_thre=20, use
     #reward_rep = torch.exp(torch.FloatTensor([-dist_mat.mean()]))[0] # representativeness reward [Eq.5]
     reward_rep = torch.exp(-dist_mat.mean())
 
-    # combine the two rewards
-    reward = (reward_div + reward_rep) * 0.5
+    # compute length reward
+    p_len = num_picks / n
+    epsilon = 0.15
+    reward_len = 1 - pow(((p_len - epsilon) / max(epsilon, 1 - epsilon)), 2)
+
+    # combine the three rewards
+    reward = (reward_div + reward_rep + reward_len) * 0.33
 
     return reward
