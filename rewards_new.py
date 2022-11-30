@@ -3,7 +3,7 @@ import sys
 
 def compute_new_reward(seq, actions, ignore_far_sim=True, temp_dist_thre=20, use_gpu=False):
     """
-    Compute diversity reward and representativeness reward
+    Compute diversity, representativeness, and length rewards
 
     Args:
         seq: sequence of features, shape (1, seq_len, dim)

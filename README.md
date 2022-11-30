@@ -1,5 +1,4 @@
-# pytorch-vsumm-reinforce
-This repo contains the Pytorch implementation of the AAAI'18 paper - [Deep Reinforcement Learning for Unsupervised Video Summarization with Diversity-Representativeness Reward](https://arxiv.org/abs/1801.00054). The original Theano implementation can be found [here](https://github.com/KaiyangZhou/vsumm-reinforce).
+# Video Summarization Using Diversity, Representativeness, and Length Rewards 
 
 <div align="center">
   <img src="imgs/pipeline.jpg" alt="train" width="80%">
@@ -8,16 +7,7 @@ This repo contains the Pytorch implementation of the AAAI'18 paper - [Deep Reinf
 The main requirements are [pytorch](http://pytorch.org/) (`v0.4.0`) and python `2.7`. Some dependencies that may not be installed in your machine are [tabulate](https://pypi.org/project/tabulate/) and [h5py](https://github.com/h5py/h5py). Please install other missing dependencies.
 
 ## Get started
-1. Download preprocessed datasets
-```bash
-git clone https://github.com/KaiyangZhou/pytorch-vsumm-reinforce
-cd pytorch-vsumm-reinforce
-# download datasets.tar.gz (173.5MB)
-wget http://www.eecs.qmul.ac.uk/~kz303/vsumm-reinforce/datasets.tar.gz
-tar -xvzf datasets.tar.gz
-```
-
-**Updates**: The QMUL server is inaccessible. Download the datasets from this [google drive link](https://drive.google.com/open?id=1Bf0beMN_ieiM3JpprghaoOwQe9QJIyAN).
+1. Download preprocessed datasets from [google drive link](https://drive.google.com/open?id=1Bf0beMN_ieiM3JpprghaoOwQe9QJIyAN).
 
 2. Make splits
 ```bash
@@ -71,10 +61,9 @@ You can use `summary2video.py` to transform the binary `machine_summary` to real
 ```bash
 python summary2video.py -p path_to/result.h5 -d path_to/video_frames -i 0 --fps 30 --save-dir log --save-name summary.mp4
 ```
-Please remember to specify the naming format of your video frames on this [line](https://github.com/KaiyangZhou/pytorch-vsumm-reinforce/blob/master/summary2video.py#L22).
 
 ## How to use your own data
-We preprocess data by extracting image features for videos and save them to `h5` file. The file format looks like [this](https://github.com/KaiyangZhou/vsumm-reinforce/issues/1#issuecomment-363492711). After that, you can make split via `create_split.py`. If you wanna train policy network using the entire dataset, just do `train_keys = dataset.keys()`. [Here](https://github.com/KaiyangZhou/pytorch-vsumm-reinforce/blob/master/main.py#L75) is the code where we initialize dataset. If you have any problems, feel free to contact me by email or raise an `issue`.
+We preprocess data by extracting image features for videos and save them to `h5` file. Refer to the file format in the datasets folder downloaded. After that, you can make split via `create_split.py`. If you wanna train policy network using the entire dataset, just do `train_keys = dataset.keys()`.
 
 ## Citation
 ```

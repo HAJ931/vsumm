@@ -86,7 +86,9 @@ def main():
     model = DSN(in_dim=args.input_dim, hid_dim=args.hidden_dim, num_layers=args.num_layers, cell=args.rnn_cell)
     print("Model size: {:.5f}M".format(sum(p.numel() for p in model.parameters())/1000000.0))
 
-    optimizer = torch.optim.Adam(model.parameters(), lr=args.lr, weight_decay=args.weight_decay)
+    optimizer = torch.optim.Adam(model.parameters(), 
+    
+    lr=args.lr, weight_decay=args.weight_decay)
     if args.stepsize > 0:
         scheduler = lr_scheduler.StepLR(optimizer, step_size=args.stepsize, gamma=args.gamma)
 
@@ -128,7 +130,8 @@ def main():
             for _ in range(args.num_episode):
                 actions = m.sample()
                 log_probs = m.log_prob(actions)
-                reward = compute_reward(seq, actions, use_gpu=use_gpu)
+                # reward = compute_reward(seq, actions, use_gpu=use_gpu)
+                reward = compute_new_reward(seq, actions, use_gpu=use_gpu)
                 expected_reward = log_probs.mean() * (reward - baselines[key])
                 cost -= expected_reward # minimize negative expected reward
                 epis_rewards.append(reward.item())
